@@ -39,4 +39,39 @@ class ClydeTest {
         Optional<Direction> direction = clyde.nextAiMove();
         assertEquals(Optional.empty(), direction);
     }
+
+    @Test
+    void distanceLessThan8Test(){
+        List<String> map = Arrays.asList(
+            "############",
+            "#P       C #",  // Ici il devrait shy away donc EAST
+            "############"
+        );
+
+        Level level = ghostMapParser.parseMap(map);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertNotNull(clyde);
+        Optional<Direction> direction = clyde.nextAiMove();
+        assertEquals(Optional.of(Direction.EAST), direction);
+    }
+
+    @Test
+    void distanceEqual8AndPathFreeTest(){
+        List<String> map = Arrays.asList(
+            "############",
+            "#P        C#",
+            "############"
+        );
+        Level level = ghostMapParser.parseMap(map);
+        Player pacman = playerFactory.createPacMan();
+        level.registerPlayer(pacman);
+
+        Clyde clyde = Navigation.findUnitInBoard(Clyde.class, level.getBoard());
+        assertNotNull(clyde);
+        Optional<Direction> direction = clyde.nextAiMove();
+        assertEquals(Optional.of(Direction.WEST), direction);
+    }
 }
