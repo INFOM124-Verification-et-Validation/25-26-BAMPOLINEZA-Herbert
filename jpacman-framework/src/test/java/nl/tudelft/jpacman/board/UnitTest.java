@@ -3,6 +3,8 @@ package nl.tudelft.jpacman.board;
 import nl.tudelft.jpacman.board.BoardFactory;
 import nl.tudelft.jpacman.board.Direction;
 import nl.tudelft.jpacman.level.*;
+import nl.tudelft.jpacman.npc.ghost.GhostFactory;
+import nl.tudelft.jpacman.npc.ghost.GhostMapParser;
 import nl.tudelft.jpacman.sprite.PacManSprites;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
